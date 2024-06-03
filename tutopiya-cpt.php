@@ -68,6 +68,36 @@ function tutopiya_register_cpt()
 
 add_action('init', 'tutopiya_register_cpt');
 
+function tutopiya_register_subject_taxonomy()
+{
+    $labels = array(
+        'name' => _x('Subject Categories', 'taxonomy general name'),
+        'singular_name' => _x('Subject Category', 'taxonomy singular name'),
+        'search_items' => __('Search Subject Categories'),
+        'all_items' => __('All Subject Categories'),
+        'parent_item' => __('Parent Subject Category'),
+        'parent_item_colon' => __('Parent Subject Category:'),
+        'edit_item' => __('Edit Subject Category'),
+        'update_item' => __('Update Subject Category'),
+        'add_new_item' => __('Add New Subject Category'),
+        'new_item_name' => __('New Subject Category Name'),
+        'menu_name' => __('Subject Categories'),
+    );
+
+    $args = array(
+        'hierarchical' => true,
+        'labels' => $labels,
+        'show_ui' => true,
+        'show_admin_column' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'subject-category'),
+    );
+
+    register_taxonomy('subject_category', array('educational_article'), $args);
+}
+
+add_action('init', 'tutopiya_register_subject_taxonomy');
+
 function tutopiya_add_custom_meta_boxes()
 {
     add_meta_box(
@@ -75,7 +105,7 @@ function tutopiya_add_custom_meta_boxes()
         'Author Name',
         'tutopiya_display_author_name_meta_box',
         'educational_article',
-        'normal',
+        'side',
         'high'
     );
 
@@ -84,7 +114,7 @@ function tutopiya_add_custom_meta_boxes()
         'Publication Date',
         'tutopiya_display_publication_date_meta_box',
         'educational_article',
-        'normal',
+        'side',
         'high'
     );
 
@@ -93,7 +123,7 @@ function tutopiya_add_custom_meta_boxes()
         'Subject Category',
         'tutopiya_display_subject_category_meta_box',
         'educational_article',
-        'normal',
+        'side',
         'high'
     );
 }
@@ -118,10 +148,13 @@ function tutopiya_display_subject_category_meta_box($post)
 {
     wp_nonce_field(basename(__FILE__), 'tutopiya_nonce');
     $subject_category = get_post_meta($post->ID, 'subject_category', true);
-    $categories = array('Math', 'Science', 'History', 'English');
+    $categories = get_terms(array(
+        'taxonomy' => 'subject_category',
+        'hide_empty' => false,
+    ));
     echo '<select name="subject_category" class="widefat">';
     foreach ($categories as $category) {
-        echo '<option value="' . esc_attr($category) . '"' . selected($subject_category, $category, false) . '>' . esc_html($category) . '</option>';
+        echo '<option value="' . esc_attr($category->name) . '"' . selected($subject_category, $category->name, false) . '>' . esc_html($category->name) . '</option>';
     }
     echo "</select>";
 }
@@ -176,6 +209,7 @@ function add_schema_markup()
         echo '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
     }
 }
+
 add_action('wp_head', 'add_schema_markup');
 
 function add_seo_meta_tags()
@@ -195,4 +229,5 @@ function add_seo_meta_tags()
         echo '<meta property="og:image" content="' . esc_url($thumbnail) . '" />' . "\n";
     }
 }
+
 add_action('wp_head', 'add_seo_meta_tags');
