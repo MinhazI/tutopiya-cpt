@@ -53,3 +53,70 @@ function tutopiya_register_cpt()
 }
 
 add_action('init', 'tutopiya_register_cpt');
+
+function tutopiya_add_custom_meta_boxes()
+{
+    add_meta_box(
+        'author_name_meta_box',
+        'Author Name',
+        'tutopiya_display_name_meta_box',
+        'educational_article',
+        'normal',
+        'high'
+    );
+
+    add_meta_box(
+        'publication_date_meta_box',
+        'Publication Date',
+        'tutopiya_display_publication_date_meta_box',
+        'educational_article',
+        'normal',
+        'high'
+    );
+
+    add_meta_box(
+        'subject_category_meta_box',
+        'Subject Category',
+        'tutopiya_display_subject_category_meta_box',
+        'educational_article',
+        'normal',
+        'high'
+    );
+}
+
+add_action('add_meta_boxes', 'tutopiya_add_custom_meta_boxes');
+
+function tutopiya_display_author_name_meta_box($post)
+{
+    $author_name = get_post_meta($post->ID, 'author_name', true);
+    echo '<input type="text" name="author_name" value="' . esc_attr($author_name) . '" class="widefat"/>';
+}
+
+function tutopiya_display_publication_date_meta_box($post)
+{
+    $publication_date = get_post_meta($post->ID, 'publication_date', true);
+    echo '<input type="date" name="publication_date" value="' . esc_attr($publication_date) . '" class="widefat"/>';
+}
+
+function tutopiya_display_subject_category_meta_box($post)
+{
+    $subject_category = get_post_meta($post->ID, 'subject_category', true);
+    $categories = array('Math', 'Science', 'History', 'English');
+    echo '<select name="subject_category" class="widefat">';
+    foreach ($categories as $category) {
+        echo '<option value="' . esc_attr($category) . '""' . selected($subject_category, $category, false) . '>' . esc_html($category) . '</option>';
+    }
+    echo "</select>";
+}
+
+function tutopiya_save_meta_boxes($post_id)
+{
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!isset($_POST['author_name']) || !isset($_POST['publication_date']) || !isset($_POST['subject_category'])) return;
+
+    update_post_meta($post_id, 'author_name', sanitize_text_field($_POST['author_name']));
+    update_post_meta($post_id, 'publication_date', sanitize_text_field($_POST['publication_date']));
+    update_post_meta($post_id, 'subject_category', sanitize_text_field($_POST['subject_category']));
+}
+
+add_action('save_post', 'tutopiya_save_meta_boxes');
