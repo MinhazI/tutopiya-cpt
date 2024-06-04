@@ -28,15 +28,6 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
                                 <?php the_content(); ?>
                             </div>
                         </div>
-
-                        <footer class="entry-footer">
-                            <hr />
-                            <?php if (comments_open() || get_comments_number()) : ?>
-                                <div class="comments-wrapper">
-                                    <?php comments_template(); ?>
-                                </div>
-                            <?php endif; ?>
-                        </footer>
                     </article>
                 </main>
                 <?php get_sidebar(); ?>

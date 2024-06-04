@@ -29,7 +29,6 @@
 }
 .tutopiya-educational-single-article .entry-meta {
   font-size: 0.9em;
-  color: #888;
 }
 .tutopiya-educational-single-article .entry-meta span {
   display: inline-block;
@@ -37,7 +36,6 @@
 }
 .tutopiya-educational-single-article .entry-meta span i {
   margin-right: 5px;
-  color: #6ec1e4;
 }
 .tutopiya-educational-single-article .post-inner {
   margin-bottom: 20px;
@@ -56,74 +54,8 @@
   font-size: 1.5em;
   margin-bottom: 20px;
 }
-.tutopiya-educational-single-article button,
-.tutopiya-educational-single-article .wp-element-button {
-  background-color: #01b8af;
-  color: #fff;
-  font-size: 15px;
-  text-align: center;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1em;
-  box-sizing: border-box;
-  display: block;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.tutopiya-educational-single-article button:hover,
-.tutopiya-educational-single-article .wp-element-button:hover {
-  border: 2px solid #01b8af;
-  background-color: #fff;
-  color: #01b8af;
-}
-.tutopiya-educational-single-article table,
-.tutopiya-educational-single-article th,
-.tutopiya-educational-single-article td {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-.tutopiya-educational-single-article table {
-  border-collapse: separate;
-  border-spacing: 0;
-  border-width: 1px 0 0 1px;
-  margin-bottom: 20px;
-  width: 100%;
-}
-.tutopiya-educational-single-article caption,
-.tutopiya-educational-single-article th {
-  font-weight: 400;
-  text-align: left;
-}
-.tutopiya-educational-single-article th {
-  text-transform: uppercase;
-  color: #333;
-}
-.tutopiya-educational-single-article td,
-.tutopiya-educational-single-article th {
-  padding: 8px;
-  border-width: 0 1px 1px 0;
-}
 .tutopiya-educational-single-article a img {
   border: 0 none;
-}
-.tutopiya-educational-single-article *,
-.tutopiya-educational-single-article *:before,
-.tutopiya-educational-single-article *:after {
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.tutopiya-educational-single-article ::-moz-selection {
-  background: #0c4c8a;
-  color: #fff;
-}
-.tutopiya-educational-single-article ::selection {
-  background: #0c4c8a;
-  color: #fff;
-}
-.tutopiya-educational-single-article ::-moz-selection {
-  background: #0c4c8a;
-  color: #fff;
 }
 
 @media (min-width: 1200px) {
