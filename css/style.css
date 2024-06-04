@@ -68,6 +68,9 @@
 .tutopiya-educational-single-article a img {
   border: 0 none;
 }
+.tutopiya-educational-single-article .meta-links {
+  font-size: 21px;
+}
 .tutopiya-educational-single-article *,
 .tutopiya-educational-single-article *:before,
 .tutopiya-educational-single-article *:after {
@@ -98,6 +101,9 @@
   margin-bottom: 10px;
 }
 .tutopiya-educational-single-article .entry-meta {
+  font-size: 0.9em;
+}
+.tutopiya-educational-single-article .entry-meta a {
   font-size: 0.9em;
 }
 .tutopiya-educational-single-article .entry-meta span {

@@ -31,7 +31,7 @@ function tutopiya_register_cpt()
         'has_archive'        => true,
         'hierarchical'       => false,
         'menu_position'      => null,
-        'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
+        'supports'           => array('title', 'editor', 'author', 'thumbnail'),
         'show_in_rest'       => true
     );
 

@@ -19,9 +19,13 @@ function tutopiya_add_new_subject_callback()
 
     if (is_wp_error($result)) {
         wp_send_json_error($result->get_error_message());
+    } else {
+        // Send the term ID and name back to the JavaScript
+        wp_send_json_success(array(
+            'term_id' => $result['term_id'],
+            'name' => $title
+        ));
     }
-
-    wp_send_json_success();
 }
 
 add_action('wp_ajax_tutopiya_add_new_subject', 'tutopiya_add_new_subject_callback');

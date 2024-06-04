@@ -43,17 +43,6 @@ function tutopiya_display_author_name_meta_box($post)
     echo '<input type="text" name="author_name" value="' . esc_attr($author_name) . '" class="tutopiya-meta-field"/>';
 }
 
-// function tutopiya_display_publication_date_meta_box($post)
-// {
-//     wp_nonce_field(basename(__FILE__), 'tutopiya_nonce');
-//     $publication_date = get_post_meta($post->ID, 'publication_date', true);
-//     if (empty($publication_date)) {
-//         $publication_date = get_the_date('Y-m-d', $post);
-//     }
-
-//     echo '<input type="date" name="publication_date" value="' . esc_attr($publication_date) . '"/>';
-// }
-
 function tutopiya_display_publication_date_meta_box($post)
 {
     wp_nonce_field(basename(__FILE__), 'tutopiya_nonce');
@@ -69,33 +58,38 @@ function tutopiya_display_publication_date_meta_box($post)
 function tutopiya_display_subject_category_meta_box($post)
 {
     wp_nonce_field(basename(__FILE__), 'tutopiya_nonce');
-    $subject_categories = get_post_meta($post->ID, 'subject_category', true) ?: array();
+
     $categories = get_terms(array(
         'taxonomy' => 'subject_category',
         'hide_empty' => false,
     ));
+
+    $post_terms = wp_get_post_terms($post->ID, 'subject_category', array('fields' => 'ids'));
+
 ?>
+
     <ul class="categorychecklist form-no-clear">
         <?php foreach ($categories as $category) : ?>
             <li>
                 <label class="selectit">
-                    <input required type="checkbox" name="subject_category[]" class="tutopiya-meta-field" value="<?php echo esc_attr($category->term_id); ?>" <?php checked(in_array($category->term_id, $subject_categories)); ?>>
+                    <input type="checkbox" name="subject_category[]" value="<?php echo esc_attr($category->term_id); ?>" <?php checked(in_array($category->term_id, $post_terms)); ?>>
                     <?php echo esc_html($category->name); ?>
                 </label>
             </li>
         <?php endforeach; ?>
     </ul>
+    <span class="spinner"></span>
     <p class="add-new-subject">
         <a href="#" class="link"><?php _e('Add New Subject'); ?></a>
     </p>
     <div class="new-subject-form" style="display:none;">
         <p>
             <label for="new-subject-title"><?php _e('Subject Title:'); ?></label><br>
-            <input required type="text" id="new-subject-title" name="new_subject_title" class="tutopiya-meta-field">
+            <input type="text" id="new-subject-title" name="new_subject_title">
         </p>
         <p>
             <label for="new-subject-parent"><?php _e('Parent Subject:'); ?></label><br>
-            <select required id="new-subject-parent" name="new_subject_parent">
+            <select id="new-subject-parent" name="new_subject-parent">
                 <option value=""><?php _e('Parent Subject'); ?></option>
                 <?php foreach ($categories as $category) : ?>
                     <option value="<?php echo esc_attr($category->term_id); ?>"><?php echo esc_html($category->name); ?></option>
@@ -106,7 +100,6 @@ function tutopiya_display_subject_category_meta_box($post)
             <button id="add-new-subject" class="button-primary"><?php _e('Add New Subject'); ?></button>
         </p>
     </div>
-
     <script>
         jQuery(document).ready(function($) {
             $('.add-new-subject a').click(function(e) {
@@ -115,6 +108,8 @@ function tutopiya_display_subject_category_meta_box($post)
             });
 
             $('#add-new-subject').click(function(e) {
+                $(".spinner").addClass("is-active");
+                $("#add-new-subject").addClass('disabled');
                 e.preventDefault();
 
                 var title = $('#new-subject-title').val();
@@ -136,10 +131,21 @@ function tutopiya_display_subject_category_meta_box($post)
                     },
                     success: function(response) {
                         if (response.success) {
-                            location.reload();
+                            console.log("AJAX response", response.data);
+                            // Append new category to the list (without refresh)
+                            var newCategoryItem = '<li><label class="selectit"><input type="checkbox" name="subject_category[]" value="' + response.data.term_id + '" checked> ' + response.data.name + '</label></li>';
+                            $('.categorychecklist').append(newCategoryItem);
+
+                            // Clear form fields and hide the form
+                            $('#new-subject-title').val('');
+                            $('#new-subject-parent').val('');
+                            $('.new-subject-form').slideUp();
+
                         } else {
                             alert(response.data);
                         }
+                        $(".spinner").removeClass("is-active");
+                        $("#add-new-subject").removeClass('disabled');
                     }
                 });
             });
@@ -148,10 +154,22 @@ function tutopiya_display_subject_category_meta_box($post)
 <?php
 }
 
-function tutopiya_save_meta_boxes($post_id)
+
+add_action('save_post', 'tutopiya_save_subject_category_meta');
+
+function tutopiya_save_subject_category_meta($post_id)
 {
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    if (!isset($_POST['tutopiya_nonce']) || !wp_verify_nonce($_POST['tutopiya_nonce'], basename(__FILE__))) return;
+    if (!isset($_POST['tutopiya_nonce']) || !wp_verify_nonce($_POST['tutopiya_nonce'], basename(__FILE__))) {
+        return $post_id;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return $post_id;
+    }
+
+    if (!current_user_can('edit_post', $post_id)) {
+        return $post_id;
+    }
 
     if (isset($_POST['author_name'])) {
         update_post_meta($post_id, 'author_name', sanitize_text_field($_POST['author_name']));
@@ -159,10 +177,11 @@ function tutopiya_save_meta_boxes($post_id)
     if (isset($_POST['publication_date'])) {
         update_post_meta($post_id, 'publication_date', sanitize_text_field($_POST['publication_date']));
     }
+
     if (isset($_POST['subject_category'])) {
-        $subject_category = array_map('intval', $_POST['subject_category']); // Ensure IDs are integers
-        update_post_meta($post_id, 'subject_category', $subject_category);
+        $subject_categories = array_map('intval', $_POST['subject_category']);
+        wp_set_object_terms($post_id, $subject_categories, 'subject_category');
+    } else {
+        wp_set_object_terms($post_id, array(), 'subject_category'); // Remove all terms if none selected
     }
 }
-
-add_action('save_post', 'tutopiya_save_meta_boxes');

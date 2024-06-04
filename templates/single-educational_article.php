@@ -9,46 +9,53 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
                         <header class="entry-header">
                             <div class="entry-header-inner">
                                 <h1 class="entry-title"><?php the_title(); ?></h1>
+                                <p><?php var_dump(get_post_meta(get_the_ID())) ?></p>
                                 <div class="entry-meta">
-                                    <span class="byline"><i class="fas fa-user"></i> By <?php echo esc_html(get_post_meta(get_the_ID(), 'author_name', true)); ?></span>
-                                    <span class="posted-on"><i class="fas fa-calendar-alt"></i> <?php echo esc_html(get_post_meta(get_the_ID(), 'publication_date', true)); ?></span>
+                                    <span class="byline">
+                                        <i class="fas fa-user"></i>
+                                        <?php
+                                        $author_name = get_post_meta(get_the_ID(), 'author_name', true);
+                                        $author_posts_link = get_author_posts_url(get_the_author_meta('ID'));
+                                        if ($author_posts_link) :
+                                        ?>
+                                            <a href="<?php echo esc_url($author_posts_link); ?>" class="meta-links"><?php echo esc_html($author_name); ?></a>
+                                        <?php else : ?>
+                                            <?php echo esc_html($author_name); ?>
+                                        <?php endif; ?>
+                                    </span>
+
+                                    <span class="posted-on">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <a href="<?php echo esc_url(get_permalink()); ?>" class="meta-links"><?php echo esc_html(get_post_meta(get_the_ID(), 'publication_date', true)); ?></a>
+                                    </span>
+
                                     <span class="cat-links">
                                         <i class="fas fa-folder"></i>
                                         <?php
-                                        // Get the array of subject category IDs
-                                        $category_ids = get_post_meta(get_the_ID(), 'subject_category', true);
+                                        $categories = get_the_terms(get_the_ID(), 'subject_category');
 
-                                        // Check if category_ids is not empty and is an array
-                                        // if (!empty($category_ids)) {
-                                        // Fetch the category names using the IDs
-                                        $categories = get_terms(array(
-                                            'taxonomy' => 'subject_category',
-                                        ));
+                                        if ($categories && !is_wp_error($categories)) {
+                                            $categories_count = count($categories);
+                                            $last_index = $categories_count - 1;
 
-                                        print_r($categories);
-
-                                        // Get the count of categories
-                                        $categories_count = count($categories);
-
-                                        // Loop through the categories and display them
-                                        foreach ($categories as $index => $category) {
-                                            echo esc_html($category->name);
-                                            if ($index < $categories_count - 1) {
-                                                echo ', ';
-                                            }
-                                        }
-                                        // } 
-                                        ?>
+                                            foreach ($categories as $index => $category) { ?>
+                                                <span><a href="<?php echo esc_url(get_term_link($category)); ?>" class="meta-links"><?php echo esc_html($category->name); ?></a><?php
+                                                                                                                                                                                if ($index < $last_index) {
+                                                                                                                                                                                    echo ","; // Comma without leading space
+                                                                                                                                                                                }
+                                                                                                                                                                                ?></span><?php
+                                                                                                                                                                        }
+                                                                                                                                                                    }
+                                                                                                                                                                            ?>
                                     </span>
 
-                                </div>
 
-                                <?php if (has_post_thumbnail()) : ?>
-                                    <figure class="post-thumbnail">
-                                        <?php the_post_thumbnail(); ?>
-                                    </figure>
-                                <?php endif; ?>
-                            </div>
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <figure class="post-thumbnail">
+                                            <?php the_post_thumbnail(); ?>
+                                        </figure>
+                                    <?php endif; ?>
+                                </div>
                         </header>
 
                         <div class="post-inner">
