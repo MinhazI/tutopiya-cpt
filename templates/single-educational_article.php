@@ -2,7 +2,7 @@
 get_header();
 
 if (have_posts()) : while (have_posts()) : the_post(); ?>
-        <div class=" tutopiya-educational-single-article">
+        <div class="tutopiya-educational-single-article">
             <div class="content-area">
                 <main id="main" class="site-main" role="main">
                     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
