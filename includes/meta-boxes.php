@@ -40,7 +40,7 @@ function tutopiya_display_author_name_meta_box($post)
         $author_name = get_the_author_meta('display_name', $post->post_author);
     }
 
-    echo '<input type="text" name="author_name" value="' . esc_attr($author_name) . '"/>';
+    echo '<input type="text" name="author_name" value="' . esc_attr($author_name) . '" class="tutopiya-meta-field"/>';
 }
 
 // function tutopiya_display_publication_date_meta_box($post)
@@ -63,7 +63,7 @@ function tutopiya_display_publication_date_meta_box($post)
         $publication_date = get_the_time('Y-m-d', $post);
     }
 
-    echo '<input type="date" name="publication_date" value="' . esc_attr($publication_date) . '"/>';
+    echo '<input type="date" name="publication_date" value="' . esc_attr($publication_date) . '" class="tutopiya-meta-field"/>';
 }
 
 function tutopiya_display_subject_category_meta_box($post)
@@ -79,7 +79,7 @@ function tutopiya_display_subject_category_meta_box($post)
         <?php foreach ($categories as $category) : ?>
             <li>
                 <label class="selectit">
-                    <input required type="checkbox" name="subject_category[]" value="<?php echo esc_attr($category->term_id); ?>" <?php checked(in_array($category->term_id, $subject_categories)); ?>>
+                    <input required type="checkbox" name="subject_category[]" class="tutopiya-meta-field" value="<?php echo esc_attr($category->term_id); ?>" <?php checked(in_array($category->term_id, $subject_categories)); ?>>
                     <?php echo esc_html($category->name); ?>
                 </label>
             </li>
@@ -91,7 +91,7 @@ function tutopiya_display_subject_category_meta_box($post)
     <div class="new-subject-form" style="display:none;">
         <p>
             <label for="new-subject-title"><?php _e('Subject Title:'); ?></label><br>
-            <input required type="text" id="new-subject-title" name="new_subject_title">
+            <input required type="text" id="new-subject-title" name="new_subject_title" class="tutopiya-meta-field">
         </p>
         <p>
             <label for="new-subject-parent"><?php _e('Parent Subject:'); ?></label><br>
@@ -160,7 +160,8 @@ function tutopiya_save_meta_boxes($post_id)
         update_post_meta($post_id, 'publication_date', sanitize_text_field($_POST['publication_date']));
     }
     if (isset($_POST['subject_category'])) {
-        update_post_meta($post_id, 'subject_category', array_map('sanitize_text_field', $_POST['subject_category']));
+        $subject_category = array_map('intval', $_POST['subject_category']); // Ensure IDs are integers
+        update_post_meta($post_id, 'subject_category', $subject_category);
     }
 }
 

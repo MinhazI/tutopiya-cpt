@@ -77,6 +77,6 @@ add_action('admin_enqueue_scripts', 'tutopiya_enqueue_admin_scripts');
 
 function tutopiya_enqueue_admin_styles()
 {
-    wp_enqueue_style('tutopiya-admin-style', plugin_dir_url(__FILE__) . 'css/admin-style.css', array(), '1.0');
+    wp_enqueue_style('tutopiya-admin-style', plugin_dir_url(__FILE__) . 'css/admin.css', array(), '0.1.0');
 }
 add_action('admin_enqueue_scripts', 'tutopiya_enqueue_admin_styles');

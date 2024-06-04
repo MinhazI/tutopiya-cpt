@@ -1,20 +1,18 @@
-/* admin-style.css */
-.tutopiya-input {
-  border-radius: 0 !important;
-  border: 1px solid #ccd0d4;
-  box-shadow: none;
-  padding: 8px;
+input[type="date"].tutopiya-meta-field {
+  border-radius: 0px;
   width: 100%;
-  box-sizing: border-box;
+  height: 50px;
 }
 
-.input-error {
-  border: 1px solid red !important;
+input[type="text"].tutopiya-meta-field {
+  border-radius: 0px;
+  width: 100%;
+  height: 50px;
 }
 
-.error-message {
-  color: red;
-  font-size: 12px;
-  margin-top: 4px;
-  display: block;
-}
+/* input[type="checkbox"].tutopiya-meta-field {
+  border-radius: 2px;
+  padding: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+} */

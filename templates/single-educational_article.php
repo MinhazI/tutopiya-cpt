@@ -15,18 +15,29 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
                                     <span class="cat-links">
                                         <i class="fas fa-folder"></i>
                                         <?php
+                                        // Get the array of subject category IDs
+                                        $category_ids = get_post_meta(get_the_ID(), 'subject_category', true);
+
+                                        // Check if category_ids is not empty and is an array
+                                        // if (!empty($category_ids)) {
+                                        // Fetch the category names using the IDs
                                         $categories = get_terms(array(
                                             'taxonomy' => 'subject_category',
-                                            'hide_empty' => false,
                                         ));
 
+                                        print_r($categories);
+
+                                        // Get the count of categories
                                         $categories_count = count($categories);
+
+                                        // Loop through the categories and display them
                                         foreach ($categories as $index => $category) {
                                             echo esc_html($category->name);
                                             if ($index < $categories_count - 1) {
                                                 echo ', ';
                                             }
                                         }
+                                        // } 
                                         ?>
                                     </span>
 
