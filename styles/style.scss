@@ -1,0 +1,148 @@
+.tutopiya-educational-single-article {
+  display: flex;
+  justify-content: center;
+
+  .content-area {
+    display: flex !important;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .site-main {
+    font-size: 21px;
+    letter-spacing: .5px;
+    flex: 1;
+  }
+
+  #secondary {
+    flex: 1;
+  }
+
+  .entry-header {
+    margin-bottom: 20px;
+  }
+
+  .post-thumbnail {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  .entry-title {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+
+  .entry-meta {
+    font-size: 0.9em;
+    color: #888;
+
+    span {
+      display: inline-block;
+      margin-right: 10px;
+
+      i {
+        margin-right: 5px;
+        color: #6ec1e4;
+      }
+    }
+  }
+
+  .post-inner {
+    margin-bottom: 20px;
+  }
+
+  .entry-content {
+    font-size: 1em;
+    line-height: 1.6;
+  }
+
+  .entry-footer {
+    margin-top: 20px;
+  }
+
+  .comments-wrapper {
+    margin-top: 40px;
+  }
+
+  .comments-wrapper h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  button,
+  .wp-element-button {
+    background-color: #01b8af;
+    color: #fff;
+    font-family: Tahoma;
+    font-size: 15px;
+    text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1em;
+    box-sizing: border-box;
+    display: block;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &:hover {
+      border: 2px solid #01b8af;
+      background-color: #fff;
+      color: #01b8af;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .tutopiya-educational-single-article {
+    .site-main {
+      max-width: 72%;
+    }
+
+    #secondary {
+      max-width: 28%;
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .tutopiya-educational-single-article {
+    .site-main {
+      max-width: 70%;
+    }
+
+    #secondary {
+      max-width: 30%;
+    }
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1023px) {
+  .tutopiya-educational-single-article {
+    .site-main {
+      max-width: 65%;
+    }
+
+    #secondary {
+      max-width: 35%;
+    }
+  }
+}
+
+@media (max-width: 799px) {
+  .tutopiya-educational-single-article {
+    .site-main {
+      flex: 1;
+      max-width: 100%;
+      padding: 20px;
+    }
+
+    #secondary {
+      flex: 1;
+      max-width: 100%;
+      padding: 20px !important;
+    }
+  }
+}

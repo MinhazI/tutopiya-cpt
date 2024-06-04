@@ -1,0 +1,118 @@
+.tutopiya-educational-single-article {
+  display: flex;
+  justify-content: center;
+}
+.tutopiya-educational-single-article .content-area {
+  display: flex !important;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+}
+.tutopiya-educational-single-article .site-main {
+  font-size: 21px;
+  letter-spacing: 0.5px;
+  flex: 1;
+}
+.tutopiya-educational-single-article #secondary {
+  flex: 1;
+}
+.tutopiya-educational-single-article .entry-header {
+  margin-bottom: 20px;
+}
+.tutopiya-educational-single-article .post-thumbnail {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.tutopiya-educational-single-article .entry-title {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+.tutopiya-educational-single-article .entry-meta {
+  font-size: 0.9em;
+  color: #888;
+}
+.tutopiya-educational-single-article .entry-meta span {
+  display: inline-block;
+  margin-right: 10px;
+}
+.tutopiya-educational-single-article .entry-meta span i {
+  margin-right: 5px;
+  color: #6ec1e4;
+}
+.tutopiya-educational-single-article .post-inner {
+  margin-bottom: 20px;
+}
+.tutopiya-educational-single-article .entry-content {
+  font-size: 1em;
+  line-height: 1.6;
+}
+.tutopiya-educational-single-article .entry-footer {
+  margin-top: 20px;
+}
+.tutopiya-educational-single-article .comments-wrapper {
+  margin-top: 40px;
+}
+.tutopiya-educational-single-article .comments-wrapper h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+.tutopiya-educational-single-article button,
+.tutopiya-educational-single-article .wp-element-button {
+  background-color: #01b8af;
+  color: #fff;
+  font-family: Tahoma;
+  font-size: 15px;
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1em;
+  box-sizing: border-box;
+  display: block;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.tutopiya-educational-single-article button:hover,
+.tutopiya-educational-single-article .wp-element-button:hover {
+  border: 2px solid #01b8af;
+  background-color: #fff;
+  color: #01b8af;
+}
+
+@media (min-width: 1200px) {
+  .tutopiya-educational-single-article .site-main {
+    max-width: 72%;
+  }
+  .tutopiya-educational-single-article #secondary {
+    max-width: 28%;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .tutopiya-educational-single-article .site-main {
+    max-width: 70%;
+  }
+  .tutopiya-educational-single-article #secondary {
+    max-width: 30%;
+  }
+}
+@media (min-width: 800px) and (max-width: 1023px) {
+  .tutopiya-educational-single-article .site-main {
+    max-width: 65%;
+  }
+  .tutopiya-educational-single-article #secondary {
+    max-width: 35%;
+  }
+}
+@media (max-width: 799px) {
+  .tutopiya-educational-single-article .site-main {
+    flex: 1;
+    max-width: 100%;
+    padding: 20px;
+  }
+  .tutopiya-educational-single-article #secondary {
+    flex: 1;
+    max-width: 100%;
+    padding: 20px !important;
+  }
+}/*# sourceMappingURL=style.css.map */

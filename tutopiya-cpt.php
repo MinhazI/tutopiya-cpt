@@ -325,3 +325,16 @@ function add_seo_meta_tags()
 }
 
 add_action('wp_head', 'add_seo_meta_tags');
+
+function tutopiya_enqueue_styles()
+{
+    wp_enqueue_style('tutopiya-style', plugin_dir_url(__FILE__) . '/styles/style.css');
+}
+
+add_action('wp_enqueue_scripts', 'tutopiya_enqueue_styles');
+
+function enqueue_font_awesome()
+{
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+}
+add_action('wp_enqueue_scripts', 'enqueue_font_awesome');
