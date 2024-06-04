@@ -36,13 +36,33 @@ function tutopiya_display_author_name_meta_box($post)
 {
     wp_nonce_field(basename(__FILE__), 'tutopiya_nonce');
     $author_name = get_post_meta($post->ID, 'author_name', true);
+    if (empty($author_name)) {
+        $author_name = get_the_author_meta('display_name', $post->post_author);
+    }
+
     echo '<input type="text" name="author_name" value="' . esc_attr($author_name) . '"/>';
 }
+
+// function tutopiya_display_publication_date_meta_box($post)
+// {
+//     wp_nonce_field(basename(__FILE__), 'tutopiya_nonce');
+//     $publication_date = get_post_meta($post->ID, 'publication_date', true);
+//     if (empty($publication_date)) {
+//         $publication_date = get_the_date('Y-m-d', $post);
+//     }
+
+//     echo '<input type="date" name="publication_date" value="' . esc_attr($publication_date) . '"/>';
+// }
 
 function tutopiya_display_publication_date_meta_box($post)
 {
     wp_nonce_field(basename(__FILE__), 'tutopiya_nonce');
     $publication_date = get_post_meta($post->ID, 'publication_date', true);
+
+    if (empty($publication_date)) {
+        $publication_date = get_the_time('Y-m-d', $post);
+    }
+
     echo '<input type="date" name="publication_date" value="' . esc_attr($publication_date) . '"/>';
 }
 
@@ -54,7 +74,6 @@ function tutopiya_display_subject_category_meta_box($post)
         'taxonomy' => 'subject_category',
         'hide_empty' => false,
     ));
-
 ?>
     <ul class="categorychecklist form-no-clear">
         <?php foreach ($categories as $category) : ?>

@@ -14,15 +14,22 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
                                     <span class="posted-on"><i class="fas fa-calendar-alt"></i> <?php echo esc_html(get_post_meta(get_the_ID(), 'publication_date', true)); ?></span>
                                     <span class="cat-links">
                                         <i class="fas fa-folder"></i>
-                                        <?php $categories = get_terms(array(
+                                        <?php
+                                        $categories = get_terms(array(
                                             'taxonomy' => 'subject_category',
                                             'hide_empty' => false,
                                         ));
-                                        foreach ($categories as $category) :
-                                            var_dump($category);
-                                            echo esc_html($category->name . ', ');
-                                        endforeach;
-                                        ?></span>
+
+                                        $categories_count = count($categories);
+                                        foreach ($categories as $index => $category) {
+                                            echo esc_html($category->name);
+                                            if ($index < $categories_count - 1) {
+                                                echo ', ';
+                                            }
+                                        }
+                                        ?>
+                                    </span>
+
                                 </div>
 
                                 <?php if (has_post_thumbnail()) : ?>
