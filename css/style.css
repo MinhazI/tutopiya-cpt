@@ -101,10 +101,10 @@
   margin-bottom: 10px;
 }
 .tutopiya-educational-single-article .entry-meta {
-  font-size: 0.9em;
+  font-size: 14px;
 }
 .tutopiya-educational-single-article .entry-meta a {
-  font-size: 0.9em;
+  font-size: 14px;
 }
 .tutopiya-educational-single-article .entry-meta span {
   display: inline-block;
@@ -112,6 +112,8 @@
 }
 .tutopiya-educational-single-article .entry-meta span i {
   margin-right: 5px;
+  font-size: 14px;
+  color: #6ec1e4;
 }
 .tutopiya-educational-single-article .post-inner {
   margin-bottom: 20px;
