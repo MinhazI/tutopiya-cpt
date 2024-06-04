@@ -68,3 +68,15 @@ function tutopiya_enqueue_font_awesome()
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', array(), '5.15.4');
 }
 add_action('wp_enqueue_scripts', 'tutopiya_enqueue_font_awesome');
+
+function tutopiya_enqueue_admin_scripts()
+{
+    wp_enqueue_script('tutopiya-admin-script', plugin_dir_url(__FILE__) . 'js/admin-script.js', array('jquery'), null, true);
+}
+add_action('admin_enqueue_scripts', 'tutopiya_enqueue_admin_scripts');
+
+function tutopiya_enqueue_admin_styles()
+{
+    wp_enqueue_style('tutopiya-admin-style', plugin_dir_url(__FILE__) . 'css/admin-style.css', array(), '1.0');
+}
+add_action('admin_enqueue_scripts', 'tutopiya_enqueue_admin_styles');

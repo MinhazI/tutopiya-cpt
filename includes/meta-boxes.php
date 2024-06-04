@@ -36,14 +36,14 @@ function tutopiya_display_author_name_meta_box($post)
 {
     wp_nonce_field(basename(__FILE__), 'tutopiya_nonce');
     $author_name = get_post_meta($post->ID, 'author_name', true);
-    echo '<input type="text" name="author_name" value="' . esc_attr($author_name) . '" class="widefat"/>';
+    echo '<input type="text" name="author_name" value="' . esc_attr($author_name) . '"/>';
 }
 
 function tutopiya_display_publication_date_meta_box($post)
 {
     wp_nonce_field(basename(__FILE__), 'tutopiya_nonce');
     $publication_date = get_post_meta($post->ID, 'publication_date', true);
-    echo '<input type="date" name="publication_date" value="' . esc_attr($publication_date) . '" class="widefat"/>';
+    echo '<input type="date" name="publication_date" value="' . esc_attr($publication_date) . '"/>';
 }
 
 function tutopiya_display_subject_category_meta_box($post)
@@ -60,7 +60,7 @@ function tutopiya_display_subject_category_meta_box($post)
         <?php foreach ($categories as $category) : ?>
             <li>
                 <label class="selectit">
-                    <input type="checkbox" name="subject_category[]" value="<?php echo esc_attr($category->term_id); ?>" <?php checked(in_array($category->term_id, $subject_categories)); ?>>
+                    <input required type="checkbox" name="subject_category[]" value="<?php echo esc_attr($category->term_id); ?>" <?php checked(in_array($category->term_id, $subject_categories)); ?>>
                     <?php echo esc_html($category->name); ?>
                 </label>
             </li>
@@ -72,11 +72,11 @@ function tutopiya_display_subject_category_meta_box($post)
     <div class="new-subject-form" style="display:none;">
         <p>
             <label for="new-subject-title"><?php _e('Subject Title:'); ?></label><br>
-            <input type="text" id="new-subject-title" name="new_subject_title">
+            <input required type="text" id="new-subject-title" name="new_subject_title">
         </p>
         <p>
             <label for="new-subject-parent"><?php _e('Parent Subject:'); ?></label><br>
-            <select id="new-subject-parent" name="new_subject_parent">
+            <select required id="new-subject-parent" name="new_subject_parent">
                 <option value=""><?php _e('Parent Subject'); ?></option>
                 <?php foreach ($categories as $category) : ?>
                     <option value="<?php echo esc_attr($category->term_id); ?>"><?php echo esc_html($category->name); ?></option>

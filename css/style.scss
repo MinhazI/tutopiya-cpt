@@ -19,6 +19,84 @@
     flex: 1;
   }
 
+  button,
+  .wp-element-button {
+    background-color: #01b8af;
+    color: #fff;
+    font-family: Tahoma;
+    font-size: 15px;
+    text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1em;
+    box-sizing: border-box;
+    display: block;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &:hover {
+      border: 2px solid #01b8af;
+      background-color: #fff;
+      color: #01b8af;
+    }
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid rgba(0, 0, 0, .1);
+  }
+
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-width: 1px 0 0 1px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  caption,
+  th {
+    font-weight: 400;
+    text-align: left;
+  }
+
+  th {
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  td,
+  th {
+    padding: 8px;
+    border-width: 0 1px 1px 0;
+  }
+
+  a img {
+    border: 0 none;
+  }
+
+  *,
+  *:before,
+  *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: #0c4c8a;
+    color: #fff;
+  }
+
+  ::-moz-selection {
+    background: #0c4c8a;
+    color: #fff;
+  }
+
   .entry-header {
     margin-bottom: 20px;
   }
@@ -70,6 +148,103 @@
 
   a img {
     border: 0 none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #222;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+
+  h1 a,
+  h2 a,
+  h3 a,
+  h4 a,
+  h5 a,
+  h6 a {
+    color: #222;
+    font-weight: inherit;
+  }
+
+  h1 {
+    font-size: 30px;
+    line-height: 1.233;
+  }
+
+  h2 {
+    font-size: 26px;
+    line-height: 1.269;
+  }
+
+  h3 {
+    font-size: 24px;
+    line-height: 1.292;
+  }
+
+  h4 {
+    font-size: 22px;
+    line-height: 1.318;
+  }
+
+  h5 {
+    font-size: 20px;
+    line-height: 1.35;
+  }
+
+  h6 {
+    font-size: 18px;
+    line-height: 1.389;
+  }
+
+  .highlight {
+    font-weight: 500;
+  }
+
+  p {
+    padding: 0;
+    margin: 0 0 20px 0;
+  }
+
+  b,
+  strong {
+    font-weight: 700;
+  }
+
+  dfn,
+  cite,
+  em,
+  i {
+    font-style: italic;
+  }
+
+  blockquote {
+    color: #888;
+    font-family: "Lato", sans-serif;
+    font-size: 16px;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+    letter-spacing: .3px;
+    line-height: 1.625;
+    margin-bottom: 20px;
+    padding: 16px 20px 1px;
+    position: relative;
+    quotes: none;
+  }
+
+  blockquote cite {
+    display: block;
+    font-size: 15px;
+    font-style: normal;
+    text-align: right;
   }
 }
 

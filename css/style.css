@@ -16,6 +16,76 @@
 .tutopiya-educational-single-article #secondary {
   flex: 1;
 }
+.tutopiya-educational-single-article button,
+.tutopiya-educational-single-article .wp-element-button {
+  background-color: #01b8af;
+  color: #fff;
+  font-family: Tahoma;
+  font-size: 15px;
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1em;
+  box-sizing: border-box;
+  display: block;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.tutopiya-educational-single-article button:hover,
+.tutopiya-educational-single-article .wp-element-button:hover {
+  border: 2px solid #01b8af;
+  background-color: #fff;
+  color: #01b8af;
+}
+.tutopiya-educational-single-article table,
+.tutopiya-educational-single-article th,
+.tutopiya-educational-single-article td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.tutopiya-educational-single-article table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-width: 1px 0 0 1px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.tutopiya-educational-single-article caption,
+.tutopiya-educational-single-article th {
+  font-weight: 400;
+  text-align: left;
+}
+.tutopiya-educational-single-article th {
+  text-transform: uppercase;
+  color: #333;
+}
+.tutopiya-educational-single-article td,
+.tutopiya-educational-single-article th {
+  padding: 8px;
+  border-width: 0 1px 1px 0;
+}
+.tutopiya-educational-single-article a img {
+  border: 0 none;
+}
+.tutopiya-educational-single-article *,
+.tutopiya-educational-single-article *:before,
+.tutopiya-educational-single-article *:after {
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.tutopiya-educational-single-article ::-moz-selection {
+  background: #0c4c8a;
+  color: #fff;
+}
+.tutopiya-educational-single-article ::selection {
+  background: #0c4c8a;
+  color: #fff;
+}
+.tutopiya-educational-single-article ::-moz-selection {
+  background: #0c4c8a;
+  color: #fff;
+}
 .tutopiya-educational-single-article .entry-header {
   margin-bottom: 20px;
 }
@@ -56,6 +126,87 @@
 }
 .tutopiya-educational-single-article a img {
   border: 0 none;
+}
+.tutopiya-educational-single-article h1,
+.tutopiya-educational-single-article h2,
+.tutopiya-educational-single-article h3,
+.tutopiya-educational-single-article h4,
+.tutopiya-educational-single-article h5,
+.tutopiya-educational-single-article h6 {
+  color: #222;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.tutopiya-educational-single-article h1 a,
+.tutopiya-educational-single-article h2 a,
+.tutopiya-educational-single-article h3 a,
+.tutopiya-educational-single-article h4 a,
+.tutopiya-educational-single-article h5 a,
+.tutopiya-educational-single-article h6 a {
+  color: #222;
+  font-weight: inherit;
+}
+.tutopiya-educational-single-article h1 {
+  font-size: 30px;
+  line-height: 1.233;
+}
+.tutopiya-educational-single-article h2 {
+  font-size: 26px;
+  line-height: 1.269;
+}
+.tutopiya-educational-single-article h3 {
+  font-size: 24px;
+  line-height: 1.292;
+}
+.tutopiya-educational-single-article h4 {
+  font-size: 22px;
+  line-height: 1.318;
+}
+.tutopiya-educational-single-article h5 {
+  font-size: 20px;
+  line-height: 1.35;
+}
+.tutopiya-educational-single-article h6 {
+  font-size: 18px;
+  line-height: 1.389;
+}
+.tutopiya-educational-single-article .highlight {
+  font-weight: 500;
+}
+.tutopiya-educational-single-article p {
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+.tutopiya-educational-single-article b,
+.tutopiya-educational-single-article strong {
+  font-weight: 700;
+}
+.tutopiya-educational-single-article dfn,
+.tutopiya-educational-single-article cite,
+.tutopiya-educational-single-article em,
+.tutopiya-educational-single-article i {
+  font-style: italic;
+}
+.tutopiya-educational-single-article blockquote {
+  color: #888;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  -webkit-hyphens: none;
+  hyphens: none;
+  letter-spacing: 0.3px;
+  line-height: 1.625;
+  margin-bottom: 20px;
+  padding: 16px 20px 1px;
+  position: relative;
+  quotes: none;
+}
+.tutopiya-educational-single-article blockquote cite {
+  display: block;
+  font-size: 15px;
+  font-style: normal;
+  text-align: right;
 }
 
 @media (min-width: 1200px) {

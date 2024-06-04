@@ -12,7 +12,17 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
                                 <div class="entry-meta">
                                     <span class="byline"><i class="fas fa-user"></i> By <?php echo esc_html(get_post_meta(get_the_ID(), 'author_name', true)); ?></span>
                                     <span class="posted-on"><i class="fas fa-calendar-alt"></i> <?php echo esc_html(get_post_meta(get_the_ID(), 'publication_date', true)); ?></span>
-                                    <span class="cat-links"><i class="fas fa-folder"></i> <?php echo get_the_category_list(', '); ?></span>
+                                    <span class="cat-links">
+                                        <i class="fas fa-folder"></i>
+                                        <?php $categories = get_terms(array(
+                                            'taxonomy' => 'subject_category',
+                                            'hide_empty' => false,
+                                        ));
+                                        foreach ($categories as $category) :
+                                            var_dump($category);
+                                            echo esc_html($category->name . ', ');
+                                        endforeach;
+                                        ?></span>
                                 </div>
 
                                 <?php if (has_post_thumbnail()) : ?>
